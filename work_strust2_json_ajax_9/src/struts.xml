@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN" "D:\JAVA制造软件\eclipse-jee-kepler-SR1-win32\work_strust2_JQuery_ajax_8\src\struts-2.0.dtd">
+<struts>
+	<package name="default" namespace="/" extends="json-default" >
+		 <action name="us" class="cn.kjy.zj.action.UserAction" method="checkname">
+			<result name="success" type="json">
+				<param name="root">res</param>
+			</result>
+		</action>
+		
+		<action name="findAllprovince" class="cn.kjy.zj.action.ProvinceAction" method="findAllprovince">
+			<result name="success" type="json">
+				<param name="root">res</param>
+			</result>
+		</action>
+		
+		<action name="findCitsByProId" class="cn.kjy.zj.action.ProvinceAction" method="findCitsByProId">
+			<result name="success" type="json">
+				<param name="root">res</param>
+			</result>
+		</action>
+		
+		<action name="findAeraByCityId" class="cn.kjy.zj.action.CityAction" method="findAeraByCityId">
+			<result name="success" type="json">
+				<param name="root">res</param>
+			</result>
+		</action>
+		
+		<action name="searchByKw" class="cn.kjy.zj.action.CityAction" method="searchByKw">
+			<result name="success" type="json">
+				<param name="root">res</param>
+			</result>
+		</action>
+		
+		<action name="isreg" class="cn.kjy.zj.action.UserAction" method="isreg">
+			<result name="success" >suc.jsp</result>
+			<result name="input" >reg.jsp</result>
+		</action>
+	</package>
+</struts>

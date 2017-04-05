@@ -1,0 +1,44 @@
+.mydiv{
+	margin-top: 250px;
+	margin-left: 440px;
+}
+.mytext{
+	width: 380px;
+	height: 40px;
+	border-radius:5px;
+	border-color: gray;
+	font-size: 23px;
+}
+
+.mysub{
+	height: 43px;
+	width: 80px;
+	border-color: black;
+	border-radius:5px;
+	font-size: 20px;
+	color: white;
+	background-color: black;
+	font-weight: bold;
+}
+
+.info{
+	border:solid 1px gray;
+	width: 380px;
+	padding: 0px;
+	display: none;
+}
+
+.info ul{
+	padding: 0px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+.info ul li{
+	list-style: none;
+}
+
+.info ul li:hover{
+	background-color: gray;
+	cursor:pointer;
+}
