@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.kjy.zj.pojo.Emp">
+	<select id="checkName" parameterType="java.lang.String" resultType="java.lang.Integer">
+		select count(ename) from emp where ename=#{ename}
+	</select>
+	<select id="findAllEmp" resultMap="empdeptMap">
+		select empid,ename,job,deptno from emp
+	</select>
+	<select id="findEmpSplit" parameterType="java.util.Map" resultMap="empdeptMap">
+		select empid,ename,job,deptno from emp limit #{pn},#{ps}
+	</select>
+	<select id="findEmpCount" resultType="int">
+		select count(empid) from emp
+	</select>
+	<resultMap type="cn.kjy.zj.pojo.Emp" id="empdeptMap">
+		<id property="empid" column="empid"/>
+		<result property="ename" column="ename"/>
+		<result property="job" column="job"/>
+		<association property="dept" column="deptno" select="cn.kjy.zj.pojo.Dept.findDeptById"></association>
+	</resultMap>
+</mapper>

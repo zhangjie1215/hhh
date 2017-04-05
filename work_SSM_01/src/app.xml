@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 
+	default-autowire="byName"
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	<context:property-placeholder location="classpath:db.properties"/>
+	<bean id="dataSource"  class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="${driver}"/>
+		<property name="url" value="${url}"/>
+		<property name="username" value="${uname}"/>
+		<property name="password" value="${upwd}"/>
+	</bean>
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="configLocation" value="classpath:mybatis_cfg.xml"></property>
+	</bean>
+	<context:annotation-config></context:annotation-config>
+	<context:component-scan base-package="cn.kjy.zj"></context:component-scan>
+	<!-- <mvc:resources location="/js/" mapping="/js/**"></mvc:resources> -->
+	<!-- <mvc:default-servlet-handler/> -->
+	<!-- 配置拦截器 -->
+	<mvc:interceptors>
+		<bean  class="cn.kjy.zj.util.LoginIntercepter"></bean>
+		<mvc:interceptor>
+			<mvc:mapping path="/**/"/>
+			<bean id="checkLogin" class="cn.kjy.zj.util.LoginIntercepter"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	<mvc:annotation-driven></mvc:annotation-driven>
+	<bean id="irv" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+</beans>	
+
